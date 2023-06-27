@@ -1,0 +1,58 @@
+import java.sql.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+@WebServlet("/registration")
+public class registration extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+ 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+        // TODO Auto-generated method stub
+        PrintWriter out=response.getWriter();
+         response.setContentType("text/html");
+         String a=request.getParameter("t1");
+         String b=request.getParameter("t2");     
+         String c=request.getParameter("t3");
+         String d=request.getParameter("t4");
+         String e=request.getParameter("t5");
+          try
+          {
+          Class.forName("com.mysql.cj.jdbc.Driver");  
+          Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/eve","root","sameeredlabadkar@123");
+          String sql="insert into erp values(?,?,?,?,?)";
+          PreparedStatement pst=con.prepareStatement(sql);
+          pst.setString(1,a);
+          pst.setString(2,b);
+          pst.setString(3,c); 
+          pst.setString(4,d); 
+          pst.setString(5,e); 
+          int l=pst.executeUpdate();
+          if(l==1)
+          {
+              out.println("<h1>inserted Success.... :)</h1>");
+              out.println("<a href ='login.html'>Please login</a>");
+          }
+          else
+          {
+              out.println("<h1>sorry insertion failed......</h1>");
+          }    
+          con.close();
+
+        }
+
+         catch(Exception f)
+
+         {
+
+             System.out.println(f);
+
+         }
+
+          out.close();
+    }
+
+}
