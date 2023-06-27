@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>INSERT EMPLOYEE INFO</title>
+
+</head>
+
+<body>
+<h1>login form</h1>
+
+   <form action="insert" method="post">
+
+       
+
+       <table cellpadding="10">
+
+           <tr><td>Employee ID <input type="text" name="t1" required/></td></tr>
+
+           <tr><td>Employee Name<input type="text" name="t2"required/></td></tr>
+           
+           <tr><td>Employee Salary<input type="text" name="t3"required/></td></tr>
+           
+           <tr><td>Employee Department<input type="text" name="t4"required/></td></tr>
+
+           <tr><td><input type="submit" value="Login"/></td></tr>
+
+           <tr><td><input type="reset" value="clear"/></td></tr>
+
+           
+
+       </table>
+
+   </form>
+
+</body>
+
+</html>
