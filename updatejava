@@ -1,0 +1,56 @@
+import java.sql.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+@WebServlet("/update")
+public class update extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+ 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+        // TODO Auto-generated method stub
+        PrintWriter out=response.getWriter();
+         response.setContentType("text/html");
+         String a=request.getParameter("t11");
+         String c=request.getParameter("t13");
+          try
+          {
+          Class.forName("com.mysql.cj.jdbc.Driver");  
+          Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/eve","root","sameeredlabadkar@123");
+          String sql="update erp set password=? where erpid =?";
+          PreparedStatement pst=con.prepareStatement(sql);
+          pst.setString(1,c);
+          pst.setString(2,a);
+          int i =pst.executeUpdate();
+          if(i == 1)
+          {
+              out.println("<h1>Successfully Updated</h1>");
+          }
+          else
+         {
+        	  
+              out.println("<h1>unsuccessfully</h1>");
+
+          }
+
+         
+
+          con.close();
+
+        }
+
+         catch(Exception e)
+
+         {
+
+             System.out.println(e);
+
+         }
+
+          out.close();
+    }
+
+}
