@@ -1,0 +1,98 @@
+import java.sql.*;
+
+import java.io.IOException;
+
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+
+import javax.servlet.annotation.WebServlet;
+
+import javax.servlet.http.HttpServlet;
+
+import javax.servlet.http.HttpServletRequest;
+
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/insert")
+
+public class insert extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+
+ 
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+
+        // TODO Auto-generated method stub
+
+        PrintWriter out=response.getWriter();
+
+         response.setContentType("text/html");
+
+         String i=request.getParameter("t1");
+
+         String n=request.getParameter("t2");
+         
+         String s=request.getParameter("t3");
+         
+         String d=request.getParameter("t4");
+
+          try
+
+          {
+
+ 
+
+          Class.forName("com.mysql.cj.jdbc.Driver");  
+
+          Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/eve","root","sameeredlabadkar@123");
+
+          String sql="insert into employee values(?,?,?,?)";
+
+          PreparedStatement pst=con.prepareStatement(sql);
+
+          pst.setString(1,i);
+
+          pst.setString(2,n);
+
+          pst.setString(3,s);
+          
+          pst.setString(4,d);
+          
+         int l=pst.executeUpdate();
+
+          if(l==1)
+
+          {
+
+              out.println("<h1>inserted Success.... :)</h1>");
+
+          }
+
+          else
+
+          {
+
+              out.println("<h1>sorry insertion failed......</h1>");
+
+          }
+
+       
+
+          con.close();
+
+        }
+
+         catch(Exception e)
+
+         {
+
+             System.out.println(e);
+
+         }
+
+          out.close();
+    }
+
+}
