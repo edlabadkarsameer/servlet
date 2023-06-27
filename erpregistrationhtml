@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>R E G E S T R A T I O N</title>
+
+</head>
+
+<body>
+<h1>R E G E S T R A T I O N</h1>
+
+   <form action="registration" method="post">
+
+       
+
+       <table cellpadding="10">
+
+           <tr><td>ERP ID <input type="text" name="t1" required/></td></tr>
+           <tr><td>NAME<input type="text" name="t2"required/></td></tr>
+           <tr><td>SURNAME<input type="text" name="t3" required/></td></tr>
+           <tr><td>DEPARTMENT<input type="text" name="t4"required/></td></tr>
+           <tr><td>PASSWORD<input type="text" name="t5" required/></td></tr>
+
+           <tr><td><input type="submit" value="Login"/></td></tr>
+           <tr><td><input type="reset" value="clear"/></td></tr>
+
+           
+
+       </table>
+
+       
+
+       
+
+   </form>
+
+</body>
+
+</html>
