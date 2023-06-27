@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>IL O G I N</title>
+
+</head>
+
+<body>
+<h1>L O G I N</h1>
+
+   <form action="login" method="post">
+
+       
+
+       <table cellpadding="10">
+
+           <tr><td>ERP ID <input type="text" name="t1" required/></td></tr>
+
+           <tr><td>Password <input type="text" name="t2" required/></td></tr>
+
+           <tr><td><input type="submit" value="Login"/></td></tr>
+
+           <tr><td><input type="reset" value="clear"/></td></tr>
+			
+           
+
+       </table>
+
+       
+
+       
+
+   </form>
+<a href ="registration.html">If you don't have an account</a>
+</body>
+
+</html>
