@@ -1,0 +1,66 @@
+import java.sql.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+@WebServlet("/student")
+public class student extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+ 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+        // TODO Auto-generated method stub
+        PrintWriter out=response.getWriter();
+         response.setContentType("text/html");
+         String a=request.getParameter("t1");
+         String b=request.getParameter("t2");
+         String c=request.getParameter("t3");
+          try
+          {
+          Class.forName("com.mysql.cj.jdbc.Driver");  
+          Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/eve","root","sameeredlabadkar@123");
+          String sql="select * from stds where roll=?";
+          PreparedStatement pst=con.prepareStatement(sql);
+          pst.setString(1,a);
+          ResultSet rs=pst.executeQuery();
+          if(rs.next())
+          {
+              out.println("<h1>Roll Number already exist:)</h1>");
+          }
+          else
+         {
+        	  String sql1="insert into stds values(?,?,?)";
+
+              PreparedStatement psti=con.prepareStatement(sql1);
+
+              psti.setString(1,a);
+
+              psti.setString(2,b);
+
+              psti.setString(3,c);
+              int m =psti.executeUpdate();
+              System.out.println(m);
+              out.println("<h1>successfully inserted</h1>");
+
+          }
+
+          rs.close();
+
+          con.close();
+
+        }
+
+         catch(Exception e)
+
+         {
+
+             System.out.println(e);
+
+         }
+
+          out.close();
+    }
+
+}
