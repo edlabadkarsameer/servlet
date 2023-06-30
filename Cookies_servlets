@@ -1,0 +1,67 @@
+//java Cookies1
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Cookie;
+@WebServlet("/cookies")
+public class cookies extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+        PrintWriter out=response.getWriter();
+         response.setContentType("text/html");
+         String a=request.getParameter("t1");
+         String b = request.getParameter("t2");
+         Cookie c = new Cookie("prod_name",a);
+         Cookie d = new Cookie("prod_rate",b);
+         response.addCookie(c);
+         response.addCookie(d);
+         out.println("data stored in cookie....");
+         out.println("<html><body><form action = 'cookies2'>");
+         out.println("<input type ='submit' value='Submit'/>");
+         out.println("</form></body></html>");         
+         out.close();
+    }
+}
+//cookies2
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Cookie;
+@WebServlet("/cookies2")
+public class cookies2 extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+        PrintWriter out=response.getWriter();
+         response.setContentType("text/html");
+         Cookie n[] = request.getCookies();
+         for(int i = 0; i<n.length; i++) {
+        	 out.println("<br></br>"+n[i].getName()+":"+n[i].getValue());
+         }
+         out.close();
+         
+        
+    }
+}
+//html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Product Info</title>
+</head>
+<body>
+	<form action = "cookies" method = "POST">
+		Product Name:<input type ="text" name = "t1">
+		Product Rate:<input type ="text" name = "t2">
+		<input type ="submit" value = "go">
+	</form>
+</body>
+</html>
